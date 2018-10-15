@@ -4,16 +4,30 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
+import { BrowserRouter } from 'react-router-dom'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import cyan from '@material-ui/core/colors/cyan'
+import teal from '@material-ui/core/colors/teal'
 import './style.css'
-
 const client = new ApolloClient({
   uri: '/graphql',
   credentials: 'same-origin'
 })
 
+const theme = createMuiTheme({
+  palette: {
+    primary: cyan,
+    secondary: teal
+  }
+})
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
+    </BrowserRouter>
   </ApolloProvider>,
   document.getElementById('root')
 )

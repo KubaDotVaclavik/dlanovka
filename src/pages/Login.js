@@ -43,7 +43,8 @@ class Login extends Component {
       body: JSON.stringify({ username, password })
     })
       .then(res => {
-        window.location.reload()
+        this.props.onLoginUpdate()
+        // window.location.reload()
         console.log(res)
       })
       .catch(err => {
